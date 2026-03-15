@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aliza Mehdi – Mechanical Engineer</title>
+    <style>
+        /* ── Variables ─────────────────────────────────────────────── */
+        :root {
+            --accent:        #4facfe;
+            --accent-dim:    rgba(79, 172, 254, 0.12);
+            --accent-border: rgba(79, 172, 254, 0.22);
+            --bg-primary:    #111827;
+            --bg-secondary:  #1a2336;
+            --bg-card:       #1e2d3e;
+            --text-primary:  #e8edf5;
+            --text-secondary:#8ba4bf;
+            --text-muted:    #4e6a88;
+        }
+
+        * { box-sizing: border-box; }
+
+        /* ── Base ───────────────────────────────────────────────────── */
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-primary);
+            /* Subtle circuit tile pattern in body */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cpolyline points='0,50 38,50 50,38 50,0' fill='none' stroke='%234facfe' stroke-width='0.5' opacity='0.07'/%3E%3Cpolyline points='100,50 62,50 50,62 50,100' fill='none' stroke='%234facfe' stroke-width='0.5' opacity='0.07'/%3E%3Ccircle cx='38' cy='50' r='1.5' fill='%234facfe' opacity='0.1'/%3E%3Ccircle cx='62' cy='50' r='1.5' fill='%234facfe' opacity='0.1'/%3E%3C/svg%3E");
+            color: var(--text-primary);
+        }
+
+        h2 {
+            margin-top: 0;
+            font-size: 34px;
+            color: var(--accent);
+        }
+
+        h2.section-xl {
+            font-size: 46px;
+            margin: 52px 0 24px;
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        a:hover { text-decoration: underline; }
+
+        p {
+            text-align: justify;
+            line-height: 1.75;
+            color: var(--text-secondary);
+        }
+
+        button {
+            background: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+            border-radius: 6px;
+            padding: 10px 22px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            font-family: Arial, Helvetica, sans-serif;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+        button:hover {
+            background: var(--accent);
+            color: var(--bg-primary);
+        }
+
+        /* ── Header ─────────────────────────────────────────────────── */
+        header {
+            position: relative;
+            background-color: #0a0f1a;
+            height: 172px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.9);
+        }
+
+        header svg.hdr-bg {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 34px;
+            color: #f0faff;
+            letter-spacing: 0.06em;
+        }
+
+        header .tagline {
+            margin: 7px 0 0;
+            font-size: 14px;
+            color: var(--accent);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .portfolio-label {
+            margin: 6px 0 0;
+            font-size: 13px;
+            color: var(--text-secondary);
+            letter-spacing: 0.08em;
+            text-align: center;
+        }
+
+        /* ── Radar signal icon ──────────────────────────────────────── */
+        .radar-signal {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            vertical-align: middle;
+            margin-left: 14px;
+            position: relative;
+            top: -2px;
+        }
+
+        .radar-signal svg { overflow: visible; }
+
+        /* Each arc fades in from opacity 0, glows, then fades out */
+        .radar-signal .arc1 { animation: radar-arc 2s ease-out infinite 0s; }
+        .radar-signal .arc2 { animation: radar-arc 2s ease-out infinite 0.35s; }
+        .radar-signal .arc3 { animation: radar-arc 2s ease-out infinite 0.70s; }
+
+        @keyframes radar-arc {
+            0%   { opacity: 0; }
+            15%  { opacity: 1; filter: drop-shadow(0 0 3px rgba(79,172,254,0.9)); }
+            60%  { opacity: 0.55; }
+            100% { opacity: 0; }
+        }
+
+        /* ── Navigation ─────────────────────────────────────────────── */
+        nav {
+            background-color: #0d1320;
+            border-bottom: 1px solid var(--accent-border);
+            padding: 0 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Dropdown trigger button */
+        .nav-dropdown {
+            position: relative;
+        }
+
+        .nav-toggle {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: transparent;
+            border: 1px solid var(--accent-border);
+            border-radius: 6px;
+            color: var(--text-primary);
+            font-size: 14px;
+            font-weight: bold;
+            padding: 9px 16px;
+            cursor: pointer;
+            font-family: Arial, Helvetica, sans-serif;
+            letter-spacing: 0.04em;
+            transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+            margin: 8px 0;
+        }
+
+        .nav-toggle:hover {
+            background: var(--accent-dim);
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* Chevron arrow */
+        .nav-toggle .chevron {
+            width: 10px;
+            height: 10px;
+            border-right: 2px solid currentColor;
+            border-bottom: 2px solid currentColor;
+            transform: rotate(45deg);
+            transition: transform 0.2s ease;
+            flex-shrink: 0;
+            margin-top: -3px;
+        }
+
+        .nav-dropdown.open .nav-toggle .chevron {
+            transform: rotate(-135deg);
+            margin-top: 3px;
+        }
+
+        /* Dropdown menu panel */
+        .nav-menu {
+            display: none;
+            position: absolute;
+            top: calc(100% + 6px);
+            left: 0;
+            background-color: #0d1320;
+            border: 1px solid var(--accent-border);
+            border-radius: 8px;
+            overflow: hidden;
+            min-width: 200px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.55);
+            z-index: 200;
+        }
+
+        .nav-dropdown.open .nav-menu {
+            display: block;
+        }
+
+        .nav-menu a {
+            display: block;
+            color: var(--text-primary);
+            text-decoration: none;
+            padding: 11px 18px;
+            font-size: 14px;
+            font-weight: bold;
+            border-bottom: 1px solid rgba(79,172,254,0.08);
+            transition: background-color 0.15s ease, color 0.15s ease;
+        }
+
+        .nav-menu a:last-child { border-bottom: none; }
+
+        .nav-menu a:hover {
+            background: var(--accent-dim);
+            color: var(--accent);
+        }
+
+        /* ── Main container ─────────────────────────────────────────── */
+        main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 44px 28px;
+        }
+
+        /* ── Open-to-work banner ────────────────────────────────────── */
+        .open-banner {
+            background: linear-gradient(135deg, rgba(79,172,254,0.07) 0%, rgba(79,172,254,0.02) 100%);
+            border: 1px solid rgba(79,172,254,0.28);
+            border-left: 4px solid var(--accent);
+            border-radius: 8px;
+            padding: 22px 26px;
+            margin-bottom: 52px;
+        }
+
+        .open-banner h3 {
+            margin: 0 0 9px;
+            color: var(--accent);
+            font-size: 18px;
+        }
+
+        .open-banner p {
+            margin: 0;
+            font-size: 15px;
+        }
+
+        /* ── About grid ─────────────────────────────────────────────── */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 360px;
+            gap: 48px;
+            align-items: center;
+            margin-bottom: 64px;
+        }
+
+        .pfp {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid rgba(79,172,254,0.35);
+            box-shadow: 0 0 36px rgba(79,172,254,0.15);
+            display: block;
+            margin: auto;
+        }
+
+        /* ── Highlights grid ────────────────────────────────────────── */
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 64px;
+        }
+
+        .highlight-card {
+            background: var(--bg-card);
+            border: 1px solid var(--accent-border);
+            border-radius: 8px;
+            padding: 26px;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .highlight-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 0 22px rgba(79,172,254,0.13);
+        }
+
+        .highlight-card h3 {
+            margin: 0 0 12px;
+            color: var(--accent);
+            font-size: 17px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .highlight-card p { margin: 0; font-size: 14px; }
+
+        /* ── Resume ─────────────────────────────────────────────────── */
+        .resume-section { margin-bottom: 64px; }
+
+        .resume-preview {
+            width: 100%;
+            max-width: 780px;
+            border: 1px solid var(--accent-border);
+            border-radius: 8px;
+            display: block;
+            margin: 0 auto 24px;
+            box-shadow: 0 6px 32px rgba(0,0,0,0.5);
+        }
+
+        .resume-actions {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+
+        /* ── Project cards ──────────────────────────────────────────── */
+        .project-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 64px;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--accent-border);
+            border-radius: 8px;
+            width: 244px;
+            cursor: pointer;
+            overflow: hidden;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+        }
+
+        .project-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 0 22px rgba(79,172,254,0.18);
+            transform: translateY(-3px);
+        }
+
+        .project-card-banner {
+            height: 110px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 38px;
+            border-bottom: 1px solid var(--accent-border);
+        }
+
+        .project-card-body { padding: 14px 16px; }
+
+        .project-card-body h3 {
+            margin: 0 0 8px;
+            font-size: 15px;
+            color: var(--accent);
+        }
+
+        .project-card-body p {
+            margin: 0;
+            font-size: 13px;
+            text-align: left;
+        }
+
+        .tag {
+            display: inline-block;
+            background: rgba(79,172,254,0.09);
+            color: var(--accent);
+            font-size: 10px;
+            padding: 2px 8px;
+            border-radius: 3px;
+            margin: 6px 3px 0 0;
+            font-family: monospace;
+            border: 1px solid rgba(79,172,254,0.2);
+        }
+
+        /* ── Leadership ─────────────────────────────────────────────── */
+        .leadership-section { margin-bottom: 64px; }
+
+        .org-list { list-style: none; padding: 0; margin: 0; }
+
+        .org-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 18px 0;
+            border-bottom: 1px solid var(--accent-border);
+        }
+        .org-list li:last-child { border-bottom: none; }
+
+        .org-bullet {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+            margin-top: 6px;
+            flex-shrink: 0;
+            box-shadow: 0 0 8px rgba(79,172,254,0.5);
+        }
+
+        .org-list strong { color: var(--text-primary); }
+        .org-list p { margin: 5px 0 0; font-size: 14px; }
+
+        /* ── Modal ──────────────────────────────────────────────────── */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.88);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-overlay.active { display: flex; }
+
+        .modal-content {
+            background: var(--bg-secondary);
+            border: 1px solid rgba(79,172,254,0.28);
+            border-radius: 10px;
+            padding: 36px 40px;
+            max-width: 640px;
+            width: 90%;
+            position: relative;
+            box-shadow: 0 0 48px rgba(79,172,254,0.1);
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+
+        .modal-content h3 {
+            margin-top: 0;
+            color: var(--accent);
+            font-size: 22px;
+        }
+
+        .modal-content p {
+            color: #9cb8d4;
+            line-height: 1.75;
+            font-size: 15px;
+        }
+
+        .modal-content ul {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            padding-left: 22px;
+            font-size: 14px;
+        }
+
+        .modal-period {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin: -6px 0 18px;
+            text-align: left;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 14px;
+            right: 16px;
+            background: transparent;
+            border: none;
+            color: var(--accent);
+            font-size: 20px;
+            cursor: pointer;
+            padding: 4px 8px;
+            line-height: 1;
+            transition: color 0.2s ease;
+        }
+        .modal-close:hover { color: var(--text-primary); background: transparent; }
+
+        /* ── Footer ─────────────────────────────────────────────────── */
+        footer {
+            background: #0a0f1a;
+            border-top: 1px solid var(--accent-border);
+            padding: 44px 28px;
+            text-align: center;
+        }
+
+        footer h2 { margin: 0 0 16px; font-size: 26px; }
+
+        footer p { color: var(--text-muted); margin: 6px 0; font-size: 14px; }
+        footer a { color: var(--accent); }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 24px;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 14px;
+            border: 1px solid var(--accent-border);
+            padding: 9px 20px;
+            border-radius: 6px;
+            transition: background 0.2s ease, border-color 0.2s ease;
+        }
+        .social-link:hover {
+            background: var(--accent-dim);
+            border-color: var(--accent);
+            text-decoration: none;
+        }
+
+        .footer-copy {
+            margin-top: 32px !important;
+            font-size: 12px !important;
+            color: var(--text-muted) !important;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════ HEADER ═══════════════════════════════════════ -->
+<header>
+    <!-- Blue circuit board SVG background -->
+    <svg class="hdr-bg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 172" preserveAspectRatio="xMidYMid slice">
+        <defs>
+            <linearGradient id="hBg" x1="0" y1="0" x2="1" y2="0" gradientUnits="objectBoundingBox">
+                <stop offset="0%"   stop-color="#060c18"/>
+                <stop offset="50%"  stop-color="#0e1828"/>
+                <stop offset="100%" stop-color="#060c18"/>
+            </linearGradient>
+            <linearGradient id="cGlow" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%"   stop-color="#4facfe" stop-opacity="0.07"/>
+                <stop offset="100%" stop-color="#4facfe" stop-opacity="0"/>
+            </linearGradient>
+            <filter id="nglow">
+                <feGaussianBlur stdDeviation="2.5" result="blur"/>
+                <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+        </defs>
+
+        <!-- Base fill -->
+        <rect width="1440" height="172" fill="url(#hBg)"/>
+
+        <!-- Horizontal grid lines -->
+        <g stroke="#4facfe" stroke-width="0.4" opacity="0.09">
+            <line x1="0" y1="28"  x2="1440" y2="28"/>
+            <line x1="0" y1="58"  x2="1440" y2="58"/>
+            <line x1="0" y1="86"  x2="1440" y2="86"/>
+            <line x1="0" y1="114" x2="1440" y2="114"/>
+            <line x1="0" y1="144" x2="1440" y2="144"/>
+        </g>
+
+        <!-- LEFT circuit traces -->
+        <g stroke="#4facfe" stroke-width="1.1" opacity="0.24" fill="none">
+            <polyline points="0,124 62,124 62,58 144,58"/>
+            <polyline points="0,86 42,86 42,28 102,28 102,86 182,86"/>
+            <polyline points="62,172 62,124"/>
+            <polyline points="102,172 102,142 182,142 182,86"/>
+            <polyline points="144,58 202,58 202,28 264,28"/>
+            <polyline points="182,142 264,142 264,86 326,86"/>
+            <polyline points="264,28 342,28 342,58 384,58"/>
+            <polyline points="326,86 384,86 384,58"/>
+        </g>
+        <!-- LEFT nodes -->
+        <g fill="#4facfe" filter="url(#nglow)">
+            <circle cx="62"  cy="58"  r="3.2" opacity="0.7"/>
+            <circle cx="62"  cy="124" r="3.2" opacity="0.7"/>
+            <circle cx="102" cy="28"  r="2.6" opacity="0.58"/>
+            <circle cx="102" cy="86"  r="3.2" opacity="0.7"/>
+            <circle cx="144" cy="58"  r="2.6" opacity="0.58"/>
+            <circle cx="182" cy="86"  r="3.2" opacity="0.7"/>
+            <circle cx="182" cy="142" r="2.6" opacity="0.58"/>
+            <circle cx="202" cy="58"  r="2.2" opacity="0.48"/>
+            <circle cx="264" cy="28"  r="2.2" opacity="0.48"/>
+            <circle cx="264" cy="86"  r="2.6" opacity="0.55"/>
+            <circle cx="264" cy="142" r="2.2" opacity="0.45"/>
+            <circle cx="326" cy="86"  r="2.2" opacity="0.42"/>
+            <circle cx="342" cy="28"  r="2"   opacity="0.38"/>
+            <circle cx="384" cy="58"  r="2"   opacity="0.35"/>
+        </g>
+
+        <!-- RIGHT circuit traces (mirrored) -->
+        <g stroke="#4facfe" stroke-width="1.1" opacity="0.24" fill="none">
+            <polyline points="1440,124 1378,124 1378,58 1296,58"/>
+            <polyline points="1440,86 1398,86 1398,28 1338,28 1338,86 1258,86"/>
+            <polyline points="1378,172 1378,124"/>
+            <polyline points="1338,172 1338,142 1258,142 1258,86"/>
+            <polyline points="1296,58 1238,58 1238,28 1176,28"/>
+            <polyline points="1258,142 1176,142 1176,86 1114,86"/>
+            <polyline points="1176,28 1098,28 1098,58 1056,58"/>
+            <polyline points="1114,86 1056,86 1056,58"/>
+        </g>
+        <!-- RIGHT nodes -->
+        <g fill="#4facfe" filter="url(#nglow)">
+            <circle cx="1378" cy="58"  r="3.2" opacity="0.7"/>
+            <circle cx="1378" cy="124" r="3.2" opacity="0.7"/>
+            <circle cx="1338" cy="28"  r="2.6" opacity="0.58"/>
+            <circle cx="1338" cy="86"  r="3.2" opacity="0.7"/>
+            <circle cx="1296" cy="58"  r="2.6" opacity="0.58"/>
+            <circle cx="1258" cy="86"  r="3.2" opacity="0.7"/>
+            <circle cx="1258" cy="142" r="2.6" opacity="0.58"/>
+            <circle cx="1238" cy="58"  r="2.2" opacity="0.48"/>
+            <circle cx="1176" cy="28"  r="2.2" opacity="0.48"/>
+            <circle cx="1176" cy="86"  r="2.6" opacity="0.55"/>
+            <circle cx="1176" cy="142" r="2.2" opacity="0.45"/>
+            <circle cx="1114" cy="86"  r="2.2" opacity="0.42"/>
+            <circle cx="1098" cy="28"  r="2"   opacity="0.38"/>
+            <circle cx="1056" cy="58"  r="2"   opacity="0.35"/>
+        </g>
+
+        <!-- Center glow behind name -->
+        <rect x="384" y="0" width="672" height="172" fill="url(#cGlow)"/>
+    </svg>
+
+    <div class="header-content">
+        <h1>
+            Aliza Mehdi
+            <span class="radar-signal" aria-hidden="true">
+                <!-- WiFi/radar arcs emanating from a central dot, rotated 45° to face right -->
+                <svg width="28" height="28" viewBox="-14 -14 28 28" fill="none"
+                     xmlns="http://www.w3.org/2000/svg" style="transform:rotate(-45deg)">
+                    <!-- Origin dot -->
+                    <circle cx="0" cy="0" r="2" fill="#4facfe" opacity="0.95"/>
+                    <!-- Arc 1 — inner -->
+                    <path class="arc1" d="M 5.5,0 A 5.5,5.5 0 0 1 0,5.5"
+                          stroke="#4facfe" stroke-width="1.8" stroke-linecap="round"/>
+                    <!-- Arc 2 — mid -->
+                    <path class="arc2" d="M 9.5,0 A 9.5,9.5 0 0 1 0,9.5"
+                          stroke="#4facfe" stroke-width="1.5" stroke-linecap="round"/>
+                    <!-- Arc 3 — outer -->
+                    <path class="arc3" d="M 13,0 A 13,13 0 0 1 0,13"
+                          stroke="#4facfe" stroke-width="1.2" stroke-linecap="round"/>
+                </svg>
+            </span>
+        </h1>
+        <p class="portfolio-label">Professional Portfolio</p>
+        <p class="tagline">Mechanical Engineering &nbsp;&bull;&nbsp; Robotics &nbsp;&bull;&nbsp; Controls &nbsp;&bull;&nbsp; Software &nbsp;</p>
+    </div>
+</header>
+
+<!-- ═══════════════════════════════════════ NAV ══════════════════════════════════════════ -->
+<nav>
+    <div class="nav-dropdown" id="navDropdown">
+        <button class="nav-toggle" onclick="toggleNav()" aria-expanded="false" aria-controls="navMenu">
+            Navigate
+            <span class="chevron"></span>
+        </button>
+        <div class="nav-menu" id="navMenu" role="menu">
+            <a href="#about"      onclick="closeNav()">About</a>
+            <a href="#highlights" onclick="closeNav()">What I Bring</a>
+            <a href="#resume"     onclick="closeNav()">Resume</a>
+            <a href="#projects"   onclick="closeNav()">Projects</a>
+            <a href="#leadership" onclick="closeNav()">Leadership</a>
+            <a href="#contact"    onclick="closeNav()">Contact</a>
+        </div>
+    </div>
+</nav>
+
+<!-- ═══════════════════════════════════════ MAIN ═════════════════════════════════════════ -->
+<main>
+
+    <!-- Open-to-work banner -->
+    <div class="open-banner">
+        <h3>&#x26A1; Open to Full-Time Opportunities</h3>
+        <p>
+            I am a graduating senior (May 2026) who is eager to contribute across all fields relevant to mechanical engineering,
+            computer science, robotics, automation, and analytics. I am highly adaptable and very much still in my learning and
+            excitement phase &mdash; ready to grow fast and make an impact from day one. I welcome opportunities that challenge me
+            and let me bring both my hardware and software perspectives to the table.
+        </p>
+    </div>
+
+    <!-- ── About ─────────────────────────────────────────────────── -->
+    <section id="about">
+        <div class="about-grid">
+            <div>
+                <h2>About Me</h2>
+                <p>
+                    Hi, I'm <strong style="color:var(--text-primary)">Aliza Mehdi</strong> &mdash; a senior at
+                    <strong style="color:var(--text-primary)">The University of Texas at Austin</strong> pursuing a B.S. in
+                    Mechanical Engineering, graduating May 2026. My academic path deliberately spans both
+                    mechanical systems and computer science, giving me a dual perspective that lets me speak both
+                    hardware and software fluently.
+                </p>
+                <p>
+                    My favorite course so far has been
+                    <strong style="color:var(--text-primary)">Dynamic Systems and Controls</strong>. I love how all the
+                    fundamentals of control theory and robotics emerge from a compact set of mathematical principles, forming
+                    a common baseline that ties the whole field together. That elegance drew me deeper into robotics,
+                    automation, and the design of intelligent systems.
+                </p>
+                <p>
+                    My coursework and interests range widely &mdash; from software design to full-on robotics, covering both the hardware, computer, and software stacks.
+                    I think in systems: how components talk to each other, where failure modes hide, and how to make the whole more reliable than the sum of its parts.
+                </p>
+                <p>
+                    Outside of engineering, I enjoy <strong style="color:var(--text-primary)">scrapbooking</strong>,
+                    playing <strong style="color:var(--text-primary)">pickleball</strong>, going on
+                    <strong style="color:var(--text-primary)">hikes</strong> through the green trails Austin has to offer,
+                    and <strong style="color:var(--text-primary)">baking</strong> &mdash; especially my specialty,
+                    cookie butter truffles, which I maintain are criminally underrated.
+                </p>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:center;">
+                <img src="resources/profile_picture.png" class="pfp" alt="Aliza Mehdi">
+            </div>
+        </div>
+    </section>
+
+    <!-- ── What I Bring ──────────────────────────────────────────── -->
+    <section id="highlights">
+        <h2>What I Bring</h2>
+        <div class="highlights-grid">
+
+            <div class="highlight-card">
+                <h3><img src="resources/pencil.gif" alt="writing" style="width:17px;height:auto;vertical-align:middle;margin-right:6px;image-rendering:pixelated;">Technical Documentation</h3>
+                <p>
+                    I believe documentation is a <strong style="color:var(--text-primary)">force multiplier</strong> &mdash;
+                    it benefits not just me, but entire teams. Clear, accessible documentation accelerates onboarding,
+                    eliminates knowledge silos, and compounds value over time. I bring this discipline to every project I touch,
+                    treating written clarity as part of the engineering deliverable.
+                </p>
+            </div>
+
+            <div class="highlight-card">
+                <h3><img src="resources/robot.gif" alt="robot" style="width:17px;height:auto;vertical-align:middle;margin-right:6px;image-rendering:pixelated;">Robotics &amp; Automation</h3>
+                <p>
+                    I believe in reducing workload &mdash; both my own and humanity's &mdash; so we can all focus on things
+                    that truly matter. From LVDT calibration rigs and PLC-driven stepper motors to servo airflow systems and
+                    Jansen walking mechanisms, I bring hands-on experience in
+                    <strong style="color:var(--text-primary)">mechanical automation and control systems design</strong>.
+                </p>
+            </div>
+
+            <div class="highlight-card">
+                <h3>&#x1F4BB; Software Engineering</h3>
+                <p>
+                    Many of my courses have been in computer science &mdash; deliberately. I wanted the software depth to
+                    complement my mechanical foundation. I'm fluent in Python, C/C++, Java, MATLAB, Git, and Linux, and I've
+                    applied these in both academic capstone work and a real semiconductor manufacturing internship, bridging
+                    <strong style="color:var(--text-primary)">software and physical systems</strong>.
+                </p>
+            </div>
+
+            <div class="highlight-card">
+                <h3>&#x1F91D; Leadership &amp; Initiative</h3>
+                <p>
+                    I've led multiple senior design teams, coordinating cross-functional workflows under real-world constraints.
+                    I'm active in <strong style="color:var(--text-primary)">SWE</strong>,
+                    <strong style="color:var(--text-primary)">Pi Sigma Pi</strong> (minority academic engineering society), and
+                    <strong style="color:var(--text-primary)">Ascend</strong> (ATV design for disaster relief).
+                    For me, leadership means enabling others to do their best work.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ── Resume ─────────────────────────────────────────────────── -->
+    <section id="resume" class="resume-section">
+        <h2>Resume</h2>
+        <div class="resume-actions">
+            <a href="resources/resume_mk3.pdf" download>
+                <button>&#x2B07; Download PDF</button>
+            </a>
+        </div>
+        <img src="resources/resume_mk3.png" class="resume-preview" alt="Aliza Mehdi — Resume">
+    </section>
+
+    <!-- ── Projects ──────────────────────────────────────────────── -->
+    <h2 class="section-xl" id="projects">My Projects</h2>
+    <div class="project-cards">
+
+        <div class="project-card" onclick="openModal('dysphagia')">
+            <div class="project-card-banner" style="background:linear-gradient(135deg,#071424,#0c2240);"></div>
+            <div class="project-card-body">
+                <h3>Phantom Dysphagia System</h3>
+                <p>LVDT calibration rig for medical testing — 67% positioning error reduction.</p>
+            </div>
+        </div>
+
+        <div class="project-card" onclick="openModal('trebuchet')">
+            <div class="project-card-banner" style="background:#07101f;padding:0;overflow:hidden;">
+                <img src="resources/trebuchet.gif" alt="Trebuchet firing" style="width:100%;height:110px;object-fit:cover;display:block;">
+            </div>
+            <div class="project-card-body">
+                <h3>Trebuchet (Capstone #1)</h3>
+                <p>Team lead. MATLAB/Python simulations, CAD, and FMEA.</p>
+            </div>
+        </div>
+
+        <div class="project-card" onclick="openModal('flykiller')">
+            <div class="project-card-banner" style="background:#071810;padding:0;overflow:hidden;">
+                <img src="resources/flykiller.gif" alt="Flykiller vacuum system" style="width:100%;height:110px;object-fit:cover;display:block;">
+            </div>
+            <div class="project-card-body">
+                <h3>Flykiller (Capstone #2)</h3>
+                <p>Automated fly-elimination system with servo-driven airflow and sensor framework.</p>
+            </div>
+        </div>
+
+        <div class="project-card" onclick="openModal('standbeest')">
+            <div class="project-card-banner" style="background:#100820;padding:0;overflow:hidden;">
+                <img src="resources/standbeest.gif" alt="Standbeest walking mechanism" style="width:100%;height:110px;object-fit:cover;display:block;">
+            </div>
+            <div class="project-card-body">
+                <h3>Standbeest Walker</h3>
+                <p>Jansen mechanism transmission design with variable-speed locomotion testing.</p>
+            </div>
+        </div>
+
+        <div class="project-card" onclick="openModal('stars')">
+            <div class="project-card-banner" style="background:#07101f;padding:0;overflow:hidden;">
+                <img src="resources/chip_fab.gif" alt="CPU chip fabrication animation" style="width:100%;height:110px;object-fit:cover;display:block;">
+            </div>
+            <div class="project-card-body">
+                <h3>UT STARS Internship</h3>
+                <p>Semiconductor cleanroom training, PLC/SCADA automation, and circuit analysis.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ── Leadership ────────────────────────────────────────────── -->
+    <section id="leadership" class="leadership-section">
+        <h2>Leadership &amp; Activities</h2>
+        <ul class="org-list">
+
+            <li>
+                <div class="org-bullet"></div>
+                <div>
+                    <strong>Ramshorn Coach &mdash; UT Austin</strong>
+                    <p>
+                        Mentoring 10 underrepresented engineering students through weekly 1:1 meetings with personalized
+                        academic plans. Connected mentees with minority support groups and partner organizations (IEEE, SWE).
+                        Developed a standardized onboarding curriculum enabling scalable, consistent mentor training across cohorts.
+                    </p>
+                </div>
+            </li>
+
+            <li>
+                <div class="org-bullet"></div>
+                <div>
+                    <strong>Society of Women Engineers (SWE)</strong>
+                    <p>
+                        Active member supporting and advancing women in engineering through professional development,
+                        networking, and outreach programming across campus.
+                    </p>
+                </div>
+            </li>
+
+            <li>
+                <div class="org-bullet"></div>
+                <div>
+                    <strong>Pi Sigma Pi &mdash; Minority Academic Engineering Society</strong>
+                    <p>
+                        Member of this minority academic engineering society focused on academic excellence and building a
+                        supportive community for underrepresented students in STEM fields.
+                    </p>
+                </div>
+            </li>
+
+            <li>
+                <div class="org-bullet"></div>
+                <div>
+                    <strong>Ascend &mdash; ATV Design for Disaster Relief</strong>
+                    <p>
+                        Contributing team member on the Ascend project, designing all-terrain vehicles intended for
+                        disaster relief operations &mdash; combining mechanical design with real-world humanitarian impact.
+                    </p>
+                </div>
+            </li>
+
+        </ul>
+    </section>
+
+</main>
+
+<!-- ═══════════════════════════ MODAL OVERLAY ════════════════════════════════════════════ -->
+<div id="modal-overlay" class="modal-overlay" onclick="closeModal()">
+    <div class="modal-content" onclick="event.stopPropagation()">
+        <button class="modal-close" onclick="closeModal()">&#x2715;</button>
+        <div id="modal-body"></div>
+    </div>
+</div>
+
+<!-- ──────────────────────── MODAL TEMPLATES ─────────────────────────────────────────── -->
+<template id="modal-dysphagia">
+    <h3>Phantom Dysphagia Calibration System</h3>
+    <p class="modal-period">Fall 2025</p>
+    <ul>
+        <li>Designed an <strong>LVDT-based calibration system</strong> for a medical testing platform, reducing positioning error by <strong>67% (Y-axis)</strong> and 17% (Z-axis) to enable reliable swallowing motion research.</li>
+        <li>Designed custom sensor rig and voltage attenuation circuit, solving a sensor-to-microcontroller compatibility problem that enabled continuous displacement tracking.</li>
+        <li>Built <strong>Arduino calibration software</strong> with signal filtering for fully automated testing procedures.</li>
+        <li>Used MATLAB to simulate electromechanical interaction and generate analysis graphs supporting the design validation.</li>
+    </ul>
+    <p><strong>Technologies:</strong> MATLAB, Arduino, LVDT, Signal Conditioning, Electromechanical Integration</p>
+</template>
+
+<template id="modal-trebuchet">
+    <h3>Trebuchet (Capstone #1)</h3>
+    <p class="modal-period">Fall 2025</p>
+    <ul>
+        <li><strong>Team lead</strong> for a 6-person engineering team, coordinating cross-functional workflows to deliver a fully integrated trebuchet system on schedule.</li>
+        <li>Developed and version-controlled MATLAB and Python simulations (Git) modeling multi-stage projectile motion and launch preconditions, guiding design decisions.</li>
+        <li>Created <strong>SolidWorks CAD assemblies</strong> for the arm, pivots, linkage, sling hardware, and overall integrated design.</li>
+        <li>Performed and documented <strong>FMEA and Design-for-X analyses</strong> to improve design robustness and identify failure modes early.</li>
+    </ul>
+    <p><strong>Technologies:</strong> SolidWorks, MATLAB, Python, Git, FMEA/DfX</p>
+</template>
+
+<template id="modal-flykiller">
+    <h3>Flykiller &mdash; Senior Capstone #2</h3>
+    <p class="modal-period">Spring 2026 – Present</p>
+    <ul>
+        <li><strong>Team lead</strong> for designing an automated fly-elimination system integrating sensors and a control-plane framework.</li>
+        <li>Designed and 3D-printed the cylindrical chamber, removable tray, protective grate, and other structural components.</li>
+        <li>Developed the <strong>servo-driven airflow system</strong> and accompanying MATLAB simulation, tuning fan speed, noise profile, and suction force to reliably capture insects.</li>
+        <li>Established and executed comprehensive subsystem validation plans covering sensor accuracy, airflow performance, retention effectiveness, and environmental sensitivity.</li>
+    </ul>
+    <p><strong>Technologies:</strong> 3D Printing, MATLAB, Servo Systems, Sensor Integration, Control Systems</p>
+</template>
+
+<template id="modal-standbeest">
+    <h3>Standbeest Walker</h3>
+    <p class="modal-period">Fall 2025</p>
+    <ul>
+        <li>Designed the <strong>transmission system</strong> for a Jansen leg mechanism in SolidWorks, enabling variable-speed terrain locomotion testing across multiple walking speeds.</li>
+        <li>Delivered a fully functional prototype Standbeest walker capable of sustained locomotion at configurable speeds.</li>
+        <li>Kinematic simulation performed in MATLAB to validate design parameters and joint trajectories prior to fabrication.</li>
+    </ul>
+    <p><strong>Technologies:</strong> SolidWorks, MATLAB, Kinematics, Mechanism Design, Jansen Linkage</p>
+</template>
+
+<template id="modal-stars">
+    <h3>UT STARS Program Internship</h3>
+    <p class="modal-period">May 2025 – June 2025</p>
+    <ul>
+        <li>Completed intensive technician training in AMHS operations, FOUP handling, wafer preparation/loading, CVD, etching, and photolithography within a <strong>virtual-reality cleanroom</strong>.</li>
+        <li>Performed hands-on analysis of DC/AC circuits, pneumatic systems, and automation sensors, validating theoretical calculations against measured data to develop troubleshooting skills.</li>
+        <li>Implemented <strong>PLC logic within a SCADA environment</strong>, driving stepper motors in simulated assembly-line systems.</li>
+        <li>Gained foundational semiconductor manufacturing knowledge: IC fabrication, vacuum systems, RF systems, and cleanroom protocols.</li>
+    </ul>
+    <p><strong>Technologies:</strong> PLC, SCADA, Stepper Motors, Semiconductor Fabrication, DC/AC Circuit Analysis</p>
+</template>
+
+<!-- ═══════════════════════════════════════ FOOTER ═══════════════════════════════════════ -->
+<footer>
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <p style="margin:0 0 6px;color:var(--text-secondary);font-size:15px;text-align:center;">
+            <a href="mailto:alizamehdi2003@gmail.com">alizamehdi2003@gmail.com</a>
+        </p>
+        <p style="margin:0 0 18px;color:var(--text-secondary);font-size:15px;text-align:center;">
+            <a href="tel:6822609091">(682) 260-9091</a>
+        </p>
+        <div class="social-links">
+            <a class="social-link" href="https://github.com/alizamehdi03" target="_blank">
+                &#x1F4BB; GitHub
+            </a>
+            <a class="social-link" href="https://linkedin.com/in/aliza-mehdi-811165236" target="_blank">
+                &#x1F517; LinkedIn
+            </a>
+        </div>
+        <p class="footer-copy">Aliza Mehdi &copy; 2026</p>
+    </section>
+</footer>
+
+<!-- ═══════════════════════════════════════ SCRIPTS ══════════════════════════════════════ -->
+<script>
+    /* ── Nav dropdown ───────────────────────────────────────────── */
+    const navDropdown = document.getElementById('navDropdown');
+    const navToggle   = navDropdown.querySelector('.nav-toggle');
+
+    function toggleNav() {
+        const open = navDropdown.classList.toggle('open');
+        navToggle.setAttribute('aria-expanded', open);
+    }
+
+    function closeNav() {
+        navDropdown.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+    }
+
+    // Close when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!navDropdown.contains(e.target)) closeNav();
+    });
+
+    function openModal(id) {
+        const template = document.getElementById('modal-' + id);
+        document.getElementById('modal-body').innerHTML = template.innerHTML;
+        document.getElementById('modal-overlay').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        document.getElementById('modal-overlay').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeModal();
+    });
+</script>
+
+</body>
+</html>
